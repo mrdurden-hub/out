@@ -1,6 +1,12 @@
-version: '3.9'
+version: '3.8'
 
 services:
+  tor:
+    build: ./tor
+    image: goldy/tor-hidden-service
+    container_name: tor_service
+    restart: always
+
   postgres:
     image: postgres
     environment:
@@ -11,6 +17,8 @@ services:
       - '5432:5432'
     volumes:
       - db_deep_web:/var/lib/postgresql/data
+    depends_on:
+      - tor
       
   web:
     build: ./web
@@ -23,6 +31,7 @@ services:
 
     depends_on:
       - postgres
+      - tor
 
 volumes:
   db_deep_web:  
