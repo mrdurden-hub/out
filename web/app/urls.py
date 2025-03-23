@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from web.surface import views
-from web.deep_web import views as deeb_web_views
+from surface import views as surface_views
+from deep_web import views as deep_web_views
+
 
 urlpatterns = [
-    path('', view=views.home),
-    path('deep_web/', view=deeb_web_views.index),
+    path('', view=surface_views.home),
+    path('deep_web/', view=deep_web_views.index),
     path('admin/', admin.site.urls),
 ]

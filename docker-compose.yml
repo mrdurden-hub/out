@@ -12,6 +12,18 @@ services:
     volumes:
       - db_deep_web:/var/lib/postgresql/data
       
+  web:
+    build: ./web
+    container_name: django_web
+    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./web:/web
+    ports:
+      - '8000:8000'
+
+    depends_on:
+      - postgres
+
 volumes:
   db_deep_web:  
-
+  web:
