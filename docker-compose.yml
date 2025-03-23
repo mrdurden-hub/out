@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=tyler_durden
+      - POSTGRES_PASSWORD=KJ#56e35thfg*!@#GG5
+      - POSTGRES_DB=deep_web
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_deep_web:/var/lib/postgresql/data
+      
+volumes:
+  db_deep_web:  
+
